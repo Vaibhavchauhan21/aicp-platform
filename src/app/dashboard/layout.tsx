@@ -16,7 +16,13 @@ export default function DashboardLayout({
             </p>
           </div>
 
-          <nav className="space-y-2">
+         <nav className="space-y-2">
+            <Link
+             href="/dashboard/profile"
+               className="block rounded-md px-3 py-2 hover:bg-gray-100"
+> 
+                 Profile
+            </Link>
             <Link
               href="/dashboard"
               className="block rounded-md px-3 py-2 hover:bg-gray-100"
