@@ -11,6 +11,7 @@ type ProfileFormProps = {
   degree: string;
   branch: string;
   graduationYear: number | null;
+  institutionName: string;
 };
 
 export default function ProfileForm({
@@ -21,6 +22,7 @@ export default function ProfileForm({
   degree,
   branch,
   graduationYear,
+  institutionName,
 }: ProfileFormProps) {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -123,7 +125,21 @@ export default function ProfileForm({
         <h2 className="text-xl font-semibold">
           Academic Information
         </h2>
+        <div className="md:col-span-2">
+         <label
+          htmlFor="institution"
+         className="block text-sm font-medium"
+         >
+          Institution
+         </label>
 
+        <input
+    id="institution"
+    value={institutionName || "Not provided"}
+    disabled
+    className="mt-2 w-full rounded-md border bg-gray-50 px-3 py-2 text-gray-600"
+  />
+</div>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
           <div>
             <label

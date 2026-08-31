@@ -22,10 +22,21 @@ export default async function ProfilePage() {
         .single(),
 
       supabase
-        .from("students")
-        .select("institution_id, degree, branch, graduation_year, interests")
-        .eq("id", user.id)
-        .single(),
+      .from("students")
+      .select(`
+        institution_id,
+        degree,
+        branch,
+        graduation_year,
+        interests,
+        institutions (
+          name,
+          type,
+          location
+        )
+      `)
+      .eq("id", user.id)
+      .single(),
     ]);
 
   if (profileError || studentError) {
@@ -70,6 +81,11 @@ export default async function ProfilePage() {
         degree={student.degree ?? ""}
         branch={student.branch ?? ""}
         graduationYear={student.graduation_year}
+        institutionName={
+          Array.isArray(student.institutions)
+            ? student.institutions[0]?.name ?? ""
+            : student.institutions?.name ?? ""
+        }
       />
     </div>
   );
